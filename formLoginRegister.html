@@ -14,7 +14,7 @@
 		<div class="container">
 			<h1 class="title__color text-center">My APP</h1>
 			<div class="wrapper">
-				<form class="form form--hidden" id="login">
+				<form class="form" id="login">
 					<h2 class="form__title">Login</h2>
 					<div class="form__message form__message--error"></div>
 					<div class="form__input-group">
@@ -40,7 +40,9 @@
 					</div>
 					<button class="form__button" type="submit">Login</button>
 
-					<div class="form__text"><a href="" class="form__link">Forgot Password?</a></div>
+					<div class="form__text">
+						<a href="" id="linkForgotPass" class="form__link">Forgot Password?</a>
+					</div>
 					<div class="form__text">
 						Don't Have an account!
 						<a href="#" class="form__link" id="linkCreateAccount">Register Now</a>
@@ -100,9 +102,9 @@
 						<a href="#" class="form__link" id="linkLogin">Sign In</a>
 					</div>
 				</form>
-				<form class="form" id="forgot-pass">
+				<form class="form form--hidden" id="forgotPass">
 					<h2 class="form__title">Are you having problems logging in?</h2>
-					<p>
+					<p class="text-center">
 						Enter your email, mobile number or username and we'll send you a link to regain access
 						to your account.
 					</p>
@@ -119,8 +121,8 @@
 					</div>
 					<div class="form__input-error-message"></div>
 
-					<button class="form__button form__button--display" id="redirect-homepage" name="homepage">
-						<a href="formLoginRegister.html">Return</a>
+					<button class="form__button">
+						<a href="#" class="form__link" id="linkReturn">Return</a>
 					</button>
 					<button class="form__button form__button--display" type="submit">Continue</button>
 				</form>

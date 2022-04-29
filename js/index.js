@@ -33,6 +33,7 @@ function validation(Username, Password) {
 document.addEventListener("DOMContentLoaded", () => {
 	const loginForm = document.querySelector("#login");
 	const createAccountForm = document.querySelector("#createAccount");
+	const forgotPassForm = document.querySelector("#forgotPass");
 
 	document.querySelector("#linkCreateAccount").addEventListener("click", e => {
 		e.preventDefault();
@@ -46,6 +47,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		loginForm.classList.remove("form--hidden");
 		createAccountForm.classList.add("form--hidden");
 		console.log("true login");
+	});
+
+	// document.querySelector("#linkReturn").addEventListener("click", e => {
+	// 	e.preventDefault();
+	// 	forgotPassForm.classList.add("form--hidden");
+	// 	loginForm.classList.remove("form--hidden");
+	// 	createAccountForm.classList.add("form--hidden");
+	// });
+
+	document.querySelector("#linkForgotPass").addEventListener("click", e => {
+		e.preventDefault();
+		forgotPassForm.classList.remove("form--hidden");
+		loginForm.classList.add("form--hidden");
+		createAccountForm.classList.add("form--hidden");
 	});
 
 	loginForm.addEventListener("submit", e => {
