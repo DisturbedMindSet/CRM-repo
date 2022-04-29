@@ -49,18 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
 		console.log("true login");
 	});
 
-	// document.querySelector("#linkReturn").addEventListener("click", e => {
-	// 	e.preventDefault();
-	// 	forgotPassForm.classList.add("form--hidden");
-	// 	loginForm.classList.remove("form--hidden");
-	// 	createAccountForm.classList.add("form--hidden");
-	// });
-
 	document.querySelector("#linkForgotPass").addEventListener("click", e => {
 		e.preventDefault();
 		forgotPassForm.classList.remove("form--hidden");
 		loginForm.classList.add("form--hidden");
-		createAccountForm.classList.add("form--hidden");
+		console.log("true inside forgotPass");
+	});
+
+	document.querySelector("#linkReturn").addEventListener("click", e => {
+		e.preventDefault();
+		loginForm.classList.remove("form--hidden");
+		forgotPassForm.classList.add("form--hidden");
+		console.log("true return to login");
 	});
 
 	loginForm.addEventListener("submit", e => {
