@@ -13,9 +13,66 @@ function setInputError(inputElement, message) {
 	inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
 }
 
+function setInputSuccess(inputElement, message) {
+	inputElement.classList.add("form__input--error");
+	inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
+}
+
 function clearInputError(inputElement) {
 	inputElement.classList.remove("form__input--error");
 	inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
+}
+
+function validarEmail(input) {
+	let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+	if (input.value.match(regex)) {
+		console.log("deu ");
+	} else {
+		let message = "Invalid Email";
+		setInputError(input, message);
+	}
+}
+
+function validarPassword(input) {
+	let regExpWeak = /[a-z]/;
+	let regExpMedium = /\d+/;
+	let regExpStrong = /.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
+	let min_week_password = 3;
+	let min_medium_password = 6;
+	let min_strong_password = 6;
+
+	let input_week = input.value.match(regExpWeak);
+	let input_medium = input.value.match(regExpMedium);
+	let input_strong = input.value.match(regExpStrong);
+	if (input.value) {
+		if (input.value.length <= min_week_password && (input_week || input_medium || input_strong)) {
+			return "Your password is too week";
+		}
+		if (
+			input.value.length >= min_medium_password &&
+			((input_week && input_medium) ||
+				(input_medium && input_strong) ||
+				(input_week && input_strong))
+		) {
+			return "Your password is medium";
+		}
+		if (input.value.length >= min_strong_password && input_week && input_medium && input_strong) {
+			return "Your password is strong";
+		}
+	}
+}
+
+function comparePass(input) {
+	var pass = document.querySelector(`input[name$="password"]`);
+
+	console.log(pass);
+	console.log(input);
+	if (pass.value == input) {
+		message = "Password Match";
+
+		// clearInputError(cnfPass)
+	} else {
+	}
 }
 
 function validation(Username, Password) {
@@ -39,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		e.preventDefault();
 		loginForm.classList.add("form--hidden");
 		createAccountForm.classList.remove("form--hidden");
-		console.log("true r");
+		setFormMessage(loginForm, "error", "");
 	});
 
 	document.querySelector("#linkLogin").addEventListener("click", e => {
@@ -54,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		forgotPassForm.classList.remove("form--hidden");
 		loginForm.classList.add("form--hidden");
 		console.log("true inside forgotPass");
+		setFormMessage(loginForm, "error", "");
 	});
 
 	document.querySelector("#linkReturn").addEventListener("click", e => {
@@ -61,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		loginForm.classList.remove("form--hidden");
 		forgotPassForm.classList.add("form--hidden");
 		console.log("true return to login");
+		clearMessageError();
 	});
 
 	loginForm.addEventListener("submit", e => {
@@ -81,6 +140,28 @@ document.addEventListener("DOMContentLoaded", () => {
 				e.target.value.length < 10
 			) {
 				setInputError(inputElement, "username must be 10 characters in length");
+			}
+		});
+
+		document.querySelector("#checkEmail").addEventListener("blur", e => {
+			console.log(e.target.value);
+			validarEmail(e.target);
+		});
+		inputElement.addEventListener("blur", e => {
+			if (e.target.id === "inputPass") {
+				setInputError(inputElement, validarPassword(inputElement));
+
+				// setTimeout(setInputError,3000,inputElement,validarPassword(inputElement))
+				setTimeout(() => {
+					clearInputError(inputElement);
+				}, 2500);
+				// verificar se deve ter timeout de mensagem ---fraca/media/forte
+			}
+		});
+		inputElement.addEventListener("blur", e => {
+			if ((e.target.id = "checkPass")) {
+				console.log(e.target.value);
+				comparePass(e.target.value);
 			}
 		});
 
