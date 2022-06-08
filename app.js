@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 const hbs = require("hbs");
 const app = express();
 
+const port = process.env.PORT || 4000;
+
 dotenv.config({
 	path: "./.env",
 });
