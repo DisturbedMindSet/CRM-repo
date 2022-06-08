@@ -65,8 +65,6 @@ function validarPassword(input) {
 function comparePass(input) {
 	var pass = document.querySelector(`input[name$="password"]`);
 
-	console.log(pass);
-	console.log(input);
 	if (pass.value == input) {
 		message = "Password Match";
 
@@ -87,6 +85,20 @@ function validation(Username, Password) {
 	console.log("username doesn't exist");
 }
 
+function replaceUrl(lol) {
+	location.hash = "";
+
+	if (lol.href == location.href + "register") {
+		history.replaceState("", "", lol.href);
+	} else {
+		history.replaceState("", "", lol.href);
+	}
+	console.log(location.href);
+
+	if (lol.href == location.href + "login") {
+		history.replaceState("", "", lol.href);
+	}
+}
 document.addEventListener("DOMContentLoaded", () => {
 	const loginForm = document.querySelector("#login");
 	const createAccountForm = document.querySelector("#createAccount");
@@ -97,20 +109,22 @@ document.addEventListener("DOMContentLoaded", () => {
 		loginForm.classList.add("form--hidden");
 		createAccountForm.classList.remove("form--hidden");
 		setFormMessage(loginForm, "error", "");
+		replaceUrl(e.target);
 	});
 
 	document.querySelector("#linkLogin").addEventListener("click", e => {
 		e.preventDefault();
 		loginForm.classList.remove("form--hidden");
 		createAccountForm.classList.add("form--hidden");
-		console.log("true login");
+
+		replaceUrl(e.target);
 	});
 
 	document.querySelector("#linkForgotPass").addEventListener("click", e => {
 		e.preventDefault();
 		forgotPassForm.classList.remove("form--hidden");
 		loginForm.classList.add("form--hidden");
-		console.log("true inside forgotPass");
+
 		setFormMessage(loginForm, "error", "");
 	});
 
@@ -118,8 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		e.preventDefault();
 		loginForm.classList.remove("form--hidden");
 		forgotPassForm.classList.add("form--hidden");
-		console.log("true return to login");
-		clearMessageError();
 	});
 
 	loginForm.addEventListener("submit", e => {
@@ -160,7 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 		inputElement.addEventListener("blur", e => {
 			if ((e.target.id = "checkPass")) {
-				console.log(e.target.value);
 				comparePass(e.target.value);
 			}
 		});

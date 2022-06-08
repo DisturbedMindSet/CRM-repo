@@ -1,40 +1,38 @@
 const express = require("express");
 const path = require("path");
-const mysql = require("mysql");
-const app = express();
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const hbs = require("hbs");
+const app = express();
 
 dotenv.config({
 	path: "./.env",
 });
 
-const { request, response } = require("express");
+const { req, res } = require("express");
+const { dirname } = require("path");
 
-const db = mysql.createConnection({
-	host: process.env.DATABASE_HOST,
-	user: process.env.DATABASE_USER,
-	password: process.env.DATABASE_PASSWORD,
-	database: process.env.DATABASE,
-});
+const publicDirectory = path.join(__dirname, "./public");
+app.use(express.static(publicDirectory));
 
-db.connect(error => {
-	if (error) {
-		console.log(error);
-	} else {
-		console.log("Mysql connected");
-	}
-});
+// app.set("views", path.join(__dirname));
+app.set("view engine", "hbs");
 
 app.use(cors());
 
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.listen(process.env.PORT, process.env.DATABASE_HOST, () => {
+	console.log(`server is running on Http:://${process.env.DATABASE_HOST}:${process.env.PORT}`);
+});
+// app.use(express.static("./client/view/index.html"));
 
 // create
 
-app.post("/insert", (request, response) => {});
+// app.post("/insert", (request, response) => {});
 
 // read
 
@@ -43,9 +41,5 @@ app.post("/insert", (request, response) => {});
 // delete
 
 // DEFINE ROUTES
-app.use("/", require("./server/routes/pages"));
-app.use("/auth", require("./server/routes/auth"));
-
-app.listen(process.env.PORT, () => {
-	console.log("app is running");
-});
+app.use("/", require("./routes/pages"));
+app.use("/auth", require("./routes/auth"));

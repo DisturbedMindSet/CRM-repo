@@ -1,5 +1,6 @@
 const express = require("express");
 const authController = require("../controllers/auth");
+
 // const publicDirectory = path.join(__dirname, ".../client");
 
 const router = express.Router();
