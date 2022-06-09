@@ -25,9 +25,11 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.listen(process.env.PORT, process.env.DATABASE_HOST, () => {
-	console.log(`server is running on Http:://${process.env.DATABASE_HOST}:${process.env.PORT}`);
-});
+const port = process.env.PORT;
+
+app.listen(port);
+console.log(`server is running on ${port}`);
+
 // app.use(express.static("./client/view/index.html"));
 
 // create
