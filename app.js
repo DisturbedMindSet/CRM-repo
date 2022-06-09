@@ -12,6 +12,7 @@ dotenv.config({
 
 const { req, res } = require("express");
 const { dirname } = require("path");
+const { DEC8_BIN } = require("mysql/lib/protocol/constants/charsets");
 
 const publicDirectory = path.join(__dirname, "./public");
 app.use(express.static(publicDirectory));

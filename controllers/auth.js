@@ -1,7 +1,7 @@
 const { reset } = require("nodemon");
 const db = require("../db");
 
-exports.register = (req, resp) => {
+exports.register = (req, res) => {
 	console.log(req.body);
 
 	const { name, email, password, passwordConfirm } = req.body;
@@ -9,17 +9,33 @@ exports.register = (req, resp) => {
 	db.query("SELECT email FROM users WHERE email =?", [email], (error, results) => {
 		if (error) {
 			console.log(error);
+			return;
 		}
-		if (results.length > 0) {
-			return res.render("index", {
-				message: "that email is already in use",
-			});
-		} else if (password !== passwordConfirm) {
-			return res.render("index", {
-				message: "the password do not match",
-			});
-		}
+
+		// console.log(Object.keys(results));
+		// if (Object.keys(results).length > 0) {
+		// 	console.log("deu");
+
+		// 	return res.render("test", { message: "that email is already in use" });
+		// }
+		// // 	console.dir(res.headersSent);
+		// } else if (password !== passwordConfirm) {
+		// 	return res.render("test", {
+		// 		message: "the password do not match",
+		// 	});
+		// 	console.dir(res.headersSent);
+		// }
 	});
 
-	resp.send("form submitted");
+	// db.query('SELECT * FROM user WHERE id = "1"', (error, rows) => {
+	// 	if (error) {
+	// 		throw error;
+	// 	}
+
+	// 	if (!error) {
+	// 		console.log(rows);
+	// 	}
+	// });
+
+	res.render("user");
 };
