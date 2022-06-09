@@ -13,12 +13,8 @@ exports.register = (req, res) => {
 			return;
 		}
 
-		console.log(email);
-
 		// console.log(Object.keys(results));
 		if (Object.keys(results).length > 0) {
-			console.log("deu");
-
 			return res.render("test", { message: "that email is already in use" });
 		}
 		// // 	console.dir(res.headersSent);
