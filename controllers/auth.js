@@ -9,15 +9,18 @@ exports.register = (req, res) => {
 	db.query("SELECT email FROM users WHERE email =?", [email], (error, results) => {
 		if (error) {
 			console.log(error);
+
 			return;
 		}
 
-		// console.log(Object.keys(results));
-		// if (Object.keys(results).length > 0) {
-		// 	console.log("deu");
+		console.log(email);
 
-		// 	return res.render("test", { message: "that email is already in use" });
-		// }
+		// console.log(Object.keys(results));
+		if (Object.keys(results).length > 0) {
+			console.log("deu");
+
+			return res.render("test", { message: "that email is already in use" });
+		}
 		// // 	console.dir(res.headersSent);
 		// } else if (password !== passwordConfirm) {
 		// 	return res.render("test", {
@@ -25,6 +28,7 @@ exports.register = (req, res) => {
 		// 	});
 		// 	console.dir(res.headersSent);
 		// }
+		res.render("test");
 	});
 
 	// db.query('SELECT * FROM user WHERE id = "1"', (error, rows) => {
@@ -36,6 +40,4 @@ exports.register = (req, res) => {
 	// 		console.log(rows);
 	// 	}
 	// });
-
-	res.render("user");
 };
