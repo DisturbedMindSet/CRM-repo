@@ -85,18 +85,20 @@ function validation(Username, Password) {
 	console.log("username doesn't exist");
 }
 
-function replaceUrl(lol) {
+function replaceUrl(data) {
 	location.hash = "";
 
-	if (lol.href == location.href + "register") {
-		history.replaceState("", "", lol.href);
+	if (data.href == location.href + "register") {
+		history.replaceState("", "", data.href);
 	} else {
-		history.replaceState("", "", lol.href);
+		history.replaceState("", "", data.href);
 	}
 	console.log(location.href);
 
-	if (lol.href == location.href + "login") {
-		history.replaceState("", "", lol.href);
+	if (data.href == location.href + "login") {
+		history.replaceState("", "", data.href);
+	} else {
+		history.replaceState("", "", data.href);
 	}
 }
 document.addEventListener("DOMContentLoaded", () => {
@@ -104,45 +106,49 @@ document.addEventListener("DOMContentLoaded", () => {
 	const createAccountForm = document.querySelector("#createAccount");
 	const forgotPassForm = document.querySelector("#forgotPass");
 
-	document.querySelector("#linkCreateAccount").addEventListener("click", e => {
-		e.preventDefault();
-		loginForm.classList.add("form--hidden");
-		createAccountForm.classList.remove("form--hidden");
-		setFormMessage(loginForm, "error", "");
-		replaceUrl(e.target);
-	});
+	// document.querySelector("#linkCreateAccount").addEventListener("click", e => {
+	// 	setFormMessage(loginForm, "error", "");
 
-	document.querySelector("#linkLogin").addEventListener("click", e => {
-		e.preventDefault();
-		loginForm.classList.remove("form--hidden");
-		createAccountForm.classList.add("form--hidden");
+	// 	replaceUrl(e.target);
+	// });
 
-		replaceUrl(e.target);
-	});
+	// document.querySelector("#linkLogin").addEventListener("click", e => {
+	// 	e.preventDefault();
+	// 	replaceUrl(e.target);
+	// });
 
-	document.querySelector("#linkForgotPass").addEventListener("click", e => {
-		e.preventDefault();
-		forgotPassForm.classList.remove("form--hidden");
-		loginForm.classList.add("form--hidden");
+	const linkForgotPass = document.querySelector("#linkForgotPass");
 
-		setFormMessage(loginForm, "error", "");
-	});
+	if (linkForgotPass) {
+		linkForgotPass.addEventListener("click", e => {
+			e.preventDefault();
+			loginForm.classList.add("form--hidden");
+			forgotPassForm.classList.remove("form--hidden");
 
-	document.querySelector("#linkReturn").addEventListener("click", e => {
-		e.preventDefault();
-		loginForm.classList.remove("form--hidden");
-		forgotPassForm.classList.add("form--hidden");
-	});
+			setFormMessage(loginForm, "error", "");
+		});
+	}
 
-	loginForm.addEventListener("submit", e => {
-		e.preventDefault();
-		var username = document.querySelector(`input[name$="email"]`);
-		var password = document.querySelector(`input[name$="pass"]`);
+	const linkReturn = document.querySelector("#linkReturn");
 
-		// perform ajax/fetch login
-		validation(username, password);
-		setFormMessage(loginForm, "error", "invalid username/password combination");
-	});
+	if (linkReturn) {
+		linkReturn.addEventListener("click", e => {
+			e.preventDefault();
+			loginForm.classList.remove("form--hidden");
+			forgotPassForm.classList.add("form--hidden");
+			replaceUrl(e.target);
+		});
+	}
+
+	// loginForm.addEventListener("submit", e => {
+	// 	e.preventDefault();
+	// 	var username = document.querySelector(`input[name$="email"]`);
+	// 	var password = document.querySelector(`input[name$="pass"]`);
+
+	// 	// perform ajax/fetch login
+	// 	validation(username, password);
+	// 	setFormMessage(loginForm, "error", "invalid username/password combination");
+	// });
 
 	document.querySelectorAll(".form__input").forEach(inputElement => {
 		inputElement.addEventListener("blur", e => {
@@ -155,10 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 
-		document.querySelector("#checkEmail").addEventListener("blur", e => {
-			console.log(e.target.value);
-			validarEmail(e.target);
-		});
+		// document.querySelector("#checkEmail").addEventListener("blur", e => {
+		// 	console.log(e.target.value);
+		// 	validarEmail(e.target);
+		// });
 		inputElement.addEventListener("blur", e => {
 			if (e.target.id === "inputPass") {
 				setInputError(inputElement, validarPassword(inputElement));

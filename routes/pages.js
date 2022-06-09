@@ -16,7 +16,7 @@ router.get("/login", (req, res) => {
 
 router.get("/register", (req, res) => {
 	// response.sendFile("index", { root: path.join(__dirname, "../../client/view/") });
-	res.render("user");
+	res.render("register");
 });
 
 module.exports = router;
