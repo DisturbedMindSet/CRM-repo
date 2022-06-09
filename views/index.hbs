@@ -104,6 +104,11 @@
 						<div class="form__input-error-message"></div>
 					</div>
 					<button class="form__button" type="submit">Login</button>
+					<div style="background-color: #0000ff;" class="message">
+						{{#if message}}
+							<h4 style="background-color: #fff;">{{message}}</h4>
+						{{/if}}
+					</div>
 
 					<div class="form__text">
 						Already have an account!
