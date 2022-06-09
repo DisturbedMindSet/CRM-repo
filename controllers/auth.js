@@ -24,9 +24,8 @@ exports.register = (req, res) => {
 		// 	});
 		// 	console.dir(res.headersSent);
 		// }
-		res.render("test");
 	});
-
+	res.render("test");
 	// db.query('SELECT * FROM user WHERE id = "1"', (error, rows) => {
 	// 	if (error) {
 	// 		throw error;
