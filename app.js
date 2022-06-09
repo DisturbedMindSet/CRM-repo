@@ -10,9 +10,10 @@ dotenv.config({
 	path: "./.env",
 });
 
+const port = process.env.PORT || 4000;
+
 const { req, res } = require("express");
 const { dirname } = require("path");
-const { DEC8_BIN } = require("mysql/lib/protocol/constants/charsets");
 
 const publicDirectory = path.join(__dirname, "./public");
 app.use(express.static(publicDirectory));
@@ -25,8 +26,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
-const port = process.env.PORT;
 
 app.listen(port);
 console.log(`server is running on ${port}`);
