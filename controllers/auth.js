@@ -15,7 +15,7 @@ exports.register = (req, res) => {
 
 		// console.log(Object.keys(results));
 		if (Object.keys(results).length > 0) {
-			return res.render("index", { message: "that email is already in use" });
+			return res.render("register", { message: "that email is already in use" });
 		}
 		// // 	console.dir(res.headersSent);
 		// } else if (password !== passwordConfirm) {

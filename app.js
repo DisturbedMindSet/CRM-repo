@@ -46,4 +46,4 @@ console.log(`server is running on ${port}`);
 
 // DEFINE ROUTES
 app.use("/", require("./routes/pages"));
-// app.use("/auth", require("./routes/auth"));
+app.use("/auth", require("./routes/auth"));
