@@ -189,3 +189,7 @@ body {
 .text-center {
 	text-align: center;
 }
+
+.alert {
+	text-align: center;
+}
