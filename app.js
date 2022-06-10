@@ -42,6 +42,11 @@ console.log(`server is running on ${port}`);
 
 // delete
 
+app.get("/", (req, res) => {
+	// response.sendFile("index", { root: path.join(__dirname, "../../client/view/") });
+	res.render("index");
+});
+
 // DEFINE ROUTES
-app.use("/", require("./routes/pages"));
-app.use("/auth", require("./routes/auth"));
+// app.use("/", require("./routes/pages"));
+// app.use("/auth", require("./routes/auth"));
