@@ -1,4 +1,3 @@
-const { reset } = require("nodemon");
 const db = require("../db");
 
 exports.register = (req, res) => {
