@@ -1,17 +1,12 @@
 const mysql = require("mysql");
 
 const conn = {
-	connectionLimit: 100,
+	connectionLimit: 10,
 	host: process.env.DATABASE_HOST,
 	user: process.env.DATABASE_USER,
 	password: process.env.DATABASE_PASSWORD,
 	database: process.env.DATABASE,
 };
-
-console.log("database: " + conn.database);
-console.log("host: " + conn.host);
-console.log("user: " + conn.user);
-console.log("password: " + conn.password);
 
 function handleDisconnect() {
 	db = mysql.createConnection(conn);
