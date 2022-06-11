@@ -19,7 +19,7 @@ function handleDisconnect() {
 	db.connect(function (err) {
 		if (err) {
 			console.log("error when connecting to db:", err);
-			connection.release();
+
 			setTimeout(handleDisconnect, 2000);
 		} else {
 			console.log("successFull connection");
