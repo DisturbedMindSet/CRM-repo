@@ -8,12 +8,18 @@ const conn = {
 	database: process.env.DATABASE,
 };
 
+console.log("database: " + conn.database);
+console.log("host: " + conn.host);
+console.log("user: " + conn.user);
+console.log("password: " + conn.password);
+
 function handleDisconnect() {
 	db = mysql.createConnection(conn);
 
 	db.connect(function (err) {
 		if (err) {
 			console.log("error when connecting to db:", err);
+			connection.release();
 			setTimeout(handleDisconnect, 2000);
 		} else {
 			console.log("successFull connection");
@@ -21,6 +27,7 @@ function handleDisconnect() {
 	});
 	db.on("error", function (err) {
 		console.log("db error", err);
+		connection.release();
 		if (err.code === "PROTOCOL_CONNECTION_LOST") {
 			handleDisconnect();
 		} else {
