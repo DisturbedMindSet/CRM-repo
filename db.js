@@ -1,3 +1,4 @@
+const { config } = require("dotenv");
 const mysql = require("mysql");
 
 const conn = {
