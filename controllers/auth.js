@@ -36,4 +36,5 @@ exports.register = (req, res) => {
 	// 		console.log(rows);
 	// 	}
 	// });
+	return res.render("register");
 };

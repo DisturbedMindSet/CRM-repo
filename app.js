@@ -10,8 +10,6 @@ dotenv.config({
 	path: "./.env",
 });
 
-const port = process.env.PORT || 4000;
-
 const { req, res } = require("express");
 const { dirname } = require("path");
 
@@ -26,6 +24,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
+const port = process.env.PORT || 4000;
 
 app.listen(port);
 console.log(`server is running on ${port}`);
