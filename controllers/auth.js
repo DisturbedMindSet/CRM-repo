@@ -4,8 +4,9 @@ exports.register = (req, res) => {
 	console.log(req.body);
 
 	const { name, email, password, passwordConfirm } = req.body;
+	var sql = "SELECT email FROM users WHERE email =?";
 
-	db.query("SELECT email FROM users WHERE email =?", [email], (error, results) => {
+	db.query(sql, [email], (error, results) => {
 		if (error) {
 			console.log(error);
 
@@ -36,5 +37,4 @@ exports.register = (req, res) => {
 	// 		console.log(rows);
 	// 	}
 	// });
-	return res.render("register");
 };
