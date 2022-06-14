@@ -9,17 +9,17 @@ const conn = {
 };
 
 function handleDisconnect() {
-	db = mysql.createConnection(conn);
+	db = mysql.createPool(conn);
 
-	db.connect(function (err) {
-		if (err) {
-			console.log("error when connecting to db:", err);
+	// db.connect(function (err) {
+	// 	if (err) {
+	// 		console.log("error when connecting to db:", err);
 
-			setTimeout(handleDisconnect, 1000);
-		} else {
-			console.log("successFull connection");
-		}
-	});
+	// 		setTimeout(handleDisconnect, 1000);
+	// 	} else {
+	// 		console.log("successFull connection");
+	// 	}
+	// });
 	db.on("error", function (err) {
 		console.log("db error", err);
 
@@ -31,7 +31,5 @@ function handleDisconnect() {
 	});
 }
 handleDisconnect();
-
-
 
 module.exports = db;
