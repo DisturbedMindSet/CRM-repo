@@ -1,4 +1,6 @@
 const db = require("../db");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 exports.register = (req, res) => {
 	console.log(req.body);
@@ -6,7 +8,10 @@ exports.register = (req, res) => {
 	const { name, email, password, passwordConfirm } = req.body;
 	var sql = "SELECT email FROM users WHERE email =?";
 
-	db.query(sql, [email], (error, results) => {
+	console.log(typeof password);
+	console.log(typeof passwordConfirm);
+
+	db.query(sql, [email], async (error, results) => {
 		if (error) {
 			console.log(error);
 
@@ -16,16 +21,14 @@ exports.register = (req, res) => {
 		// console.log(Object.keys(results));
 		if (Object.keys(results).length > 0) {
 			return res.render("register", { message: "that email is already in use" });
-		} else {
-			console.log(error);
+		} else if (password !== passwordConfirm) {
+			return res.render("register", { messagePassWord: "Passwords do not Match" });
 		}
-		// // 	console.dir(res.headersSent);
-		// } else if (password !== passwordConfirm) {
-		// 	return res.render("test", {
-		// 		message: "the password do not match",
-		// 	});
-		// 	console.dir(res.headersSent);
-		// }
+
+		let hashedPassword = await bcrypt.hash(password, 8);
+
+		console.log(hashedPassword);
+		res.send("Testing");
 	});
 
 	// db.query('SELECT * FROM user WHERE id = "1"', (error, rows) => {
