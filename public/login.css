@@ -128,6 +128,11 @@ body {
 	border-color: var(--color-error);
 }
 
+.form__input--success {
+	color: var(--color-success);
+	border: var(--color-success);
+}
+
 .form__input-error-message {
 	margin-top: 0.5rem;
 	font-size: 0.85rem;

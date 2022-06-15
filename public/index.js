@@ -14,7 +14,7 @@ function setInputError(inputElement, message) {
 }
 
 function setInputSuccess(inputElement, message) {
-	inputElement.classList.add("form__input--error");
+	inputElement.classList.add("form__input--success");
 	inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
 }
 
