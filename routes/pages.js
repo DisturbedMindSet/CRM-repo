@@ -6,12 +6,12 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
 	// response.sendFile("index", { root: path.join(__dirname, "../../client/view/") });
-	res.render("index");
+	res.render("login");
 });
 
 router.get("/login", (req, res) => {
 	// response.sendFile("index", { root: path.join(__dirname, "../../client/view/") });
-	res.render("index");
+	res.render("login");
 });
 
 router.get("/register", (req, res) => {
