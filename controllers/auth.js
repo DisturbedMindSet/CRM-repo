@@ -8,9 +8,6 @@ exports.register = (req, res) => {
 	const { name, email, password, passwordConfirm } = req.body;
 	var sql = "SELECT email FROM users WHERE email =?";
 
-	console.log(typeof password);
-	console.log(typeof passwordConfirm);
-
 	db.query(sql, [email], async (error, results) => {
 		if (error) {
 			console.log(error);
@@ -48,7 +45,7 @@ exports.register = (req, res) => {
 			},
 		);
 	});
-
+	
 	// db.query('SELECT * FROM user WHERE id = "1"', (error, rows) => {
 	// 	if (error) {
 	// 		throw error;
