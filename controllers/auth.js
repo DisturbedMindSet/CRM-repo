@@ -20,15 +20,33 @@ exports.register = (req, res) => {
 
 		// console.log(Object.keys(results));
 		if (Object.keys(results).length > 0) {
-			return res.render("register", { message: "that email is already in use" });
+			return res.render("register", {
+				message: "that email is already in use",
+			});
 		} else if (password !== passwordConfirm) {
-			return res.render("register", { messagePassWord: "Passwords do not Match" });
+			return res.render("register", {
+				messagePassWord: "Passwords do not Match",
+			});
 		}
 
 		let hashedPassword = await bcrypt.hash(password, 8);
 
 		console.log(hashedPassword);
-		res.send("Testing");
+
+		db.query(
+			"INSERT INTO users SET ?",
+			{ name: name, email: email, password: hashedPassword },
+			(error, results) => {
+				if (error) {
+					console.log(error);
+				} else {
+					console.log(results);
+					return res.render("register", {
+						messagePassWord: "User registered",
+					});
+				}
+			},
+		);
 	});
 
 	// db.query('SELECT * FROM user WHERE id = "1"', (error, rows) => {
