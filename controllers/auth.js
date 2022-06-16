@@ -45,7 +45,7 @@ exports.register = (req, res) => {
 			},
 		);
 	});
-	
+
 	// db.query('SELECT * FROM user WHERE id = "1"', (error, rows) => {
 	// 	if (error) {
 	// 		throw error;
