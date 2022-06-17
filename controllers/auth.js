@@ -8,6 +8,10 @@ exports.register = (req, res) => {
 	const { name, email, password, passwordConfirm } = req.body;
 	var sql = "SELECT email FROM users WHERE email =?";
 
+	// query= sql // data = argumento
+	//const vary =  runQuery(sql,argumento)
+	// Depois os ifs
+
 	db.query(sql, [email], async (error, results) => {
 		if (error) {
 			console.log(error);

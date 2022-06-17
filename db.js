@@ -33,4 +33,18 @@ function handleDisconnect() {
 }
 handleDisconnect();
 
+// create function for query
+// async function runQuery(query,data){
+	
+// 	handleDisconnect()
+// 	const result = await db.query(query [data], function(error, results){
+// 		if (error) {
+// 			console.log(error);
+// 			return;
+// 		}
+
+// 	})
+	
+// }
+
 module.exports = db;
