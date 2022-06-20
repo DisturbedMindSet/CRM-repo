@@ -3,8 +3,10 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const hbs = require("hbs");
+
 const app = express();
+const { engine } = require("express-handlebars");
+const hbs = require("express-handlebars");
 
 // dotenv.config({
 // 	path: "./.env",
@@ -12,20 +14,25 @@ const app = express();
 
 const { req, res } = require("express");
 const { dirname } = require("path");
+const { handlebars } = require("hbs");
 
-const publicDirectory = path.join(__dirname, "./public");
+const publicDirectory = path.join(__dirname, "/public");
 app.use(express.static(publicDirectory));
 
+console.log(__dirname);
 // app.set("views", path.join(__dirname));
+app.set("views", path.join(__dirname, "views/layouts"));
 app.set("view engine", "hbs");
 
-app.engine("hbs",hbs({
-	defaultView: "default",
-	layoutsDir: __dirname + '/views/layouts',
-	partialsDir: __dirname + '/views/partials/'
-}))
-
-
+app.engine(
+	"hbs",
+	engine({
+		extname: ".hbs",
+		defaultLayout: "",
+		layoutsDir: path.join(__dirname, "views/layouts"),
+		partialsDir: path.join(__dirname, "views/partials"),
+	}),
+);
 
 app.use(cors());
 

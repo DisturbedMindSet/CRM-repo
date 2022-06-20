@@ -12,7 +12,7 @@ exports.register = (req, res) => {
 	//const vary =  runQuery(sql,argumento)
 	// Depois os ifs
 
-	db.query(sql, [email], async (error, results) => {
+	db.connection.query(sql, [email], async (error, results) => {
 		if (error) {
 			console.log(error);
 
@@ -34,7 +34,7 @@ exports.register = (req, res) => {
 
 		console.log(hashedPassword);
 
-		db.query(
+		db.connection.query(
 			"INSERT INTO users SET ?",
 			{ name: name, email: email, password: hashedPassword },
 			(error, results) => {
@@ -59,4 +59,36 @@ exports.register = (req, res) => {
 	// 		console.log(rows);
 	// 	}
 	// });
+};
+
+exports.login = (req, res) => {
+	console.log(req.body);
+
+	const { email, password } = req.body;
+	console.log(req.body.email);
+	console.log(req.body.pass);
+
+	var sql = "SELECT email FROM users WHERE email =?";
+	console.log("DEU");
+
+	console.log(db);
+
+	db.connection.query(sql, [email], async (error, results) => {
+		if (error) {
+			console.log(error);
+
+			return;
+		}
+		return res.render("login", {});
+
+		// if (Object.keys(results).length < 0) {
+		// 	return res.render("register", {
+		// 		message: "that email is already in use",
+		// 	});
+		// } else if (password !== passwordConfirm) {
+		// 	return res.render("register", {
+		// 		messagePassWord: "Passwords do not Match",
+		// 	});
+		// }
+	});
 };
