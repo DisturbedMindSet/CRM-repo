@@ -42,6 +42,12 @@
 					</div>
 					<button class="form__button" type="submit">Login</button>
 
+					<div class="form__message">
+						{{#if message}}
+							<h4 class="alert" style="background: rgb(238, 81, 81);">{{message}}</h4>
+						{{/if}}
+					</div>
+
 					<div class="form__text">
 						<a href="" id="linkForgotPass" class="form__link">Forgot Password?</a>
 					</div>
