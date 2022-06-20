@@ -2,6 +2,8 @@ const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
+// const SECRETKEY = process.env.
+
 exports.register = (req, res) => {
 	console.log(req.body);
 
@@ -79,6 +81,41 @@ exports.login = (req, res) => {
 
 			return;
 		}
+
+		if (!results.length) {
+			return res.render("login", {
+				message: "Username or password is incorrect!",
+			});
+		}
+
+		// check password
+		bcrypt.compare(
+			password,
+			results[0][password],
+			(bError, bResult)({
+				if(bError) {
+					console.log(bError);
+					return;
+				},
+				if(bResult) {
+					const token = jwt.sign(
+						{
+							email: results[0].email,
+						},
+						"SECRETKEY",
+						{
+							expiresIn: "7d",
+						},
+					);
+
+					db.connection.query(
+						`UPDATE users SET last_login = now() where email = ${results[0].email} `,
+					);
+
+					return;
+				},
+			}),
+		);
 		return res.render("login", {});
 
 		// if (Object.keys(results).length < 0) {
