@@ -16,21 +16,24 @@ const { req, res } = require("express");
 const { dirname } = require("path");
 const { handlebars } = require("hbs");
 
-const publicDirectory = path.join(__dirname, "/public");
+console.log("App.js : " + __dirname);
+
+const publicDirectory = path.join(__dirname, "./../public");
+console.log("publicDirectory: " + publicDirectory);
 app.use(express.static(publicDirectory));
 
-console.log(__dirname);
 // app.set("views", path.join(__dirname));
-app.set("views", path.join(__dirname, "views/layouts"));
+app.set("views", path.join(publicDirectory, "./views/layouts"));
 app.set("view engine", "hbs");
 
+console.log(__dirname);
 app.engine(
 	"hbs",
 	engine({
 		extname: ".hbs",
 		defaultLayout: "",
-		layoutsDir: path.join(__dirname, "views/layouts"),
-		partialsDir: path.join(__dirname, "views/partials"),
+		layoutsDir: path.join(__dirname, "./../views/layouts"),
+		partialsDir: path.join(__dirname, "./../views/partials"),
 	}),
 );
 

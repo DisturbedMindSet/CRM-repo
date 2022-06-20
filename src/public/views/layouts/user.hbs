@@ -3,21 +3,27 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/user/user.css" />
+		{{! external css }}
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+		/>
+		{{! internal css }}
+		<link rel="stylesheet" href="/css/user.css" />
 		<title>Register Form</title>
 	</head>
 	<body>
 		<div class="container">
-			<div class="card">
+			<div class="">
 				<h1 class="bg-blue-400">"Hello"</h1>
 				<h1 class="userName"></h1>
-				<h3>"welcome back!"</h3>
+				<h3 class="caret-yellow-700">"welcome back!"</h3>
 			</div>
 		</div>
 	</body>
 	<script src="index.js"></script>
 
-	{{!-- Script for icons // outsource --}}
+	{{! Script for icons // outsource }}
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 
 </html>
