@@ -6,9 +6,9 @@ const dotenv = require("dotenv");
 const hbs = require("hbs");
 const app = express();
 
-dotenv.config({
-	path: "./.env",
-});
+// dotenv.config({
+// 	path: "./.env",
+// });
 
 const { req, res } = require("express");
 const { dirname } = require("path");
@@ -18,6 +18,14 @@ app.use(express.static(publicDirectory));
 
 // app.set("views", path.join(__dirname));
 app.set("view engine", "hbs");
+
+app.engine("hbs",hbs({
+	defaultView: "default",
+	layoutsDir: __dirname + '/views/layouts',
+	partialsDir: __dirname + '/views/partials/'
+}))
+
+
 
 app.use(cors());
 
