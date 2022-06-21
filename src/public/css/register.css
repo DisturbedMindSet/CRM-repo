@@ -45,7 +45,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-image: url(https://my.rangel.com/assets/img/rangelBackground.jpg);
+	background-image: url(./../img/login-register-Background.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
