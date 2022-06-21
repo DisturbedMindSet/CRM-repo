@@ -129,3 +129,8 @@ exports.login = (req, res) => {
 		// }
 	});
 };
+
+exports.user = (req, res) => {
+	console.log("deu");
+	res.send("form submited");
+};
