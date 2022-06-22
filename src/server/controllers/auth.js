@@ -132,5 +132,9 @@ exports.login = (req, res) => {
 
 exports.user = (req, res) => {
 	console.log("deu");
+
+	const user = {name: req.body.name}
+
+
 	res.send("form submited");
 };

@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
+const router = express.Router();
 // const publicDirectory = path.join(__dirname, ".../client");
 
-const router = express.Router();
 
 router.get("/", (req, res) => {
 	// response.sendFile("index", { root: path.join(__dirname, "../../client/view/") });
@@ -20,7 +20,7 @@ router.get("/register", (req, res) => {
 });
 router.get("/user", (req, res) => {
 	// response.sendFile("index", { root: path.join(__dirname, "../../client/view/") });
-	res.redirect("/login");
+	res.json("any");
 });
 
 module.exports = router;
