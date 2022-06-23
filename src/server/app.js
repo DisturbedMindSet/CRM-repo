@@ -3,6 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const cookie = require("cookie-parser");
 
 const app = express();
 const { engine } = require("express-handlebars");
@@ -38,6 +39,7 @@ app.engine(
 );
 
 app.use(cors());
+app.use(cookie());
 
 app.use(bodyParser.json());
 
@@ -62,4 +64,4 @@ console.log(`server is running on ${port}`);
 
 // DEFINE ROUTES
 app.use("/", require("./routes/pages"));
-app.use("/auth", require("./routes/auth"));
+app.use("/auth", require("./controllers/auth"));
