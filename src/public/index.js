@@ -1,5 +1,8 @@
 // count/highlight class that are repeated.
 
+const { json } = require("body-parser");
+const { request } = require("http");
+
 function setFormMessage(formElement, type, message) {
 	const messageElement = formElement.querySelector(".form__message");
 
@@ -101,10 +104,71 @@ function replaceUrl(data) {
 		history.replaceState("", "", data.href);
 	}
 }
+
+function doRegister(ev) {
+	let name = document.querySelector(`input[name$="name"]`);
+	let em = document.querySelector(`input[name$="email"]`);
+	let pass = document.querySelector(`input[name$="password"]`);
+	let passConf = document.querySelector(`input[name$="passwordConfirm"]`);
+
+	let user = {
+		name: name,
+		email: em,
+		password: pass,
+		passwordConfirm: passConf,
+	};
+
+	let endpoint = "auth/register";
+	sendData(user, endpoint, registerSuccess);
+}
+
+function doLogin(ev) {}
+
+function sendData(user, endpoint, callback) {
+	let url = `http://localhost:4000/${endPoint}`;
+	let h = new Headers();
+	h.append("Content-Type", "application/json");
+	let req = new request(url, {
+		method: "Post",
+		headers: h,
+		body: JSON.stringify(user),
+	});
+	fetch(req)
+		.then(res => res.json)
+		.then(content => {
+			if ("error" in content) {
+				failure(content.error);
+			}
+			if ("data" in content) {
+				callback(content.data);
+			}
+		})
+		.catch(failure);
+}
+
+function registerSuccess(data){
+	// user has been registered
+	console.log("new user created", data)
+	alert("you have been registered!! ")
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	const loginForm = document.querySelector("#login");
 	const createAccountForm = document.querySelector("#createAccount");
 	const forgotPassForm = document.querySelector("#forgotPass");
+	const clearMessage = document.querySelector(".clean");
+	const loginSubmit = document.querySelector("#btn-loginSubmit");
+	const registerSubmit = document.querySelector("#btn-registerSubmit");
+
+	loginSubmit.addEventListener("click", doLogin);
+	registerSubmit.addEventListener("click", doRegister);
+
+	// clearMessage.addEventListener("load", e => {
+	// 	setTimeout(function () {
+	// 		e.target.classList.add("hidden");
+	// 	}, 2000);
+	// });
+	console.log(clearMessage);
 
 	// document.querySelector("#linkCreateAccount").addEventListener("click", e => {
 	// 	setFormMessage(loginForm, "error", "");
@@ -155,9 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (
 				e.target.id === "signupUsername" &&
 				e.target.value.length > 0 &&
-				e.target.value.length < 10
+				e.target.value.length < 5
 			) {
-				setInputError(inputElement, "username must be 10 characters in length");
+				setInputError(inputElement, "username must be 5 characters in length");
 			}
 		});
 
@@ -176,6 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				// verificar se deve ter timeout de mensagem ---fraca/media/forte
 			}
 		});
+
 		inputElement.addEventListener("blur", e => {
 			if ((e.target.id = "checkPass")) {
 				comparePass(e.target.value);
