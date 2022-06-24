@@ -1,6 +1,6 @@
-const getTimeStamp = () => {
-	return new Date().toISOString();
-};
+const getTimeStamp = new Date().toUTCString();
+
+// var getTimeStamp = new Date().toUTCString();
 
 const info = (namespace, message, Object) => {
 	if (Object) {

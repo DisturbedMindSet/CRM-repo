@@ -1,8 +1,8 @@
 import http from "http";
 import express from "express";
 import bodyParser from "body-parser";
-import logging from "./config/logging";
-import config from "./config/config";
+import logging from "./config/logging.js";
+import config from "./config/config.js";
 
 import cors from "cors";
 
@@ -22,13 +22,16 @@ router.use((req, res, next) => {
 			NAMESPACE,
 			`METHOD - [${req.method}],
           URL - [${req.url}], 
+			 STATUS - [${res.statusCode}],
           IP - [${req.socket.remoteAddress}]
-          STATUS - [${res.statusCode}]`,
+          `,
 		);
 	});
+
+	next();
 });
 
-router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.use(bodyParser.json());
 
@@ -45,6 +48,8 @@ router.use((req, res, next) => {
 		res.header("Access-Control-Allow-Methods", "GET PATCH DELETE POST PUT");
 		return res.status(200).json({});
 	}
+
+	next();
 });
 
 // Routes
