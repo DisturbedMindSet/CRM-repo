@@ -7,8 +7,7 @@
 		"test": "test"
 	},
 	"scripts": {
-		"build": "nodemon src/server/app.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "nodemon src/server/app.js"
 	},
 	"author": "",
 	"license": "ISC",
