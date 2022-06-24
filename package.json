@@ -1,6 +1,5 @@
 {
 	"scripts": {
-		"start": "cd src/server && app.js "
+		"start": "cd src/server && node app.js "
 	}
-	 
 }
