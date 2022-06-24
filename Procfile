@@ -1,1 +1,1 @@
-web: node src/server/app.js
+web: src/server/node src/server/app.js
