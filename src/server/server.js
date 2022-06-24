@@ -32,6 +32,36 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.use(bodyParser.json());
 
+// Rules of API
 router.use((req, res, next) => {
-	res.header("Access-Control-Allow-origin", "http://localhost:4000/"); //mudar para o IP ou criar variavel em config
+	var origin = "http://localhost:4000";
+	res.header("Access-Control-Allow-origin", "origin"); //mudar para o IP ou criar var em config
+	res.header(
+		"access-Control-Allow-Headers",
+		"origin, X-Requested-With, Content-Type, Accept, Authorization",
+	);
+
+	if (req.method == "OPTIONS") {
+		res.header("Access-Control-Allow-Methods", "GET PATCH DELETE POST PUT");
+		return res.status(200).json({});
+	}
 });
+
+// Routes
+
+// Error Handling
+
+router.use((req, res, next) => {
+	const error = new Error("not found");
+
+	return res.status(404).json({
+		message: error.message,
+	});
+});
+
+// create the server
+
+const httpServer = http.createServer(router);
+httpServer.listen(config.server.port, () =>
+	logging.info(NAMESPACE, `server running on ${config.server.hostname}:${config.server.port}`),
+);

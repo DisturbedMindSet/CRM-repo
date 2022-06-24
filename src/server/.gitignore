@@ -4,5 +4,5 @@ test
 README.md
 .env
 .vscode
-config
+
 db.js
