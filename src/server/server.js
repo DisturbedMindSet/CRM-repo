@@ -32,10 +32,6 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.use(bodyParser.json());
 
-router.use((req,res,next) =>{
-   res.header("Access-Control-Allow-origin", "http://localhost:4000/") //mudar para o IP ou criar variavel em config
-
-   
-})
-
-
+router.use((req, res, next) => {
+	res.header("Access-Control-Allow-origin", "http://localhost:4000/"); //mudar para o IP ou criar variavel em config
+});
