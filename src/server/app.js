@@ -62,6 +62,10 @@ console.log(`server is running on ${port}`);
 
 // delete
 
+app.get("/", (req, res) => {
+	res.redirect("login");
+});
+
 // DEFINE ROUTES
-app.use("/", require("./routes/pages"));
-app.use("/auth", require("./controllers/auth"));
+// app.use("/", require("./routes/pages"));
+// app.use("/auth", require("./controllers/auth"));
