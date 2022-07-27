@@ -1,0 +1,93 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		{{! external css }}
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+		/>
+		{{! internal css }}
+		<link rel="stylesheet" href="/css/login.css" />
+
+		<title>Login Form</title>
+	</head>
+
+	<body>
+		<div class="container">
+
+			<div class="wrapper">
+
+				<form action="/login" method="post" class="form" id="login">
+					<h2 class="form__title">Login</h2>
+					<div class="form__message form__message--error"></div>
+					<div class="form__input-group">
+						<label for="username">Username</label>
+						<input
+							type="text"
+							name="email"
+							class="form__input"
+							autofocus
+							placeholder="Enter your email...."
+						/>
+						<div class="form__input-error-message"></div>
+					</div>
+
+					<div class="form__input-group">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							name="pass"
+							class="form__input"
+							autofocus
+							placeholder="Password.***"
+						/>
+						<div class="form__input-error-message"></div>
+					</div>
+					<button class="form__button" id="btn-loginSubmit" type="submit">Login</button>
+
+					<div class="form__message clean">
+						{{#if message}}
+							<h4 class="alert" style="background: rgb(238, 81, 81);">{{message}}</h4>
+						{{/if}}
+					</div>
+
+					<div class="form__text">
+						<a href="" id="linkForgotPass" class="form__link">Forgot Password?</a>
+					</div>
+
+					<div class="form__text">
+						Don't Have an account!
+						<a href="/register" class="" id="linkCreateAccount">Register Now</a>
+					</div>
+
+				</form>
+
+				<form class="form form--hidden" id="forgotPass">
+					<h2 class="form__title">Are you having problems logging in?</h2>
+					<p class="text-center">
+						Enter your email, mobile number or username and we'll send you a link to regain access
+						to your account.
+					</p>
+					<div class="form__message form__message--error"></div>
+					<div class="form__input-group">
+						<input type="text" class="form__input" autofocus placeholder="Enter your email...." />
+						<div class="form__input-error-message"></div>
+					</div>
+					<div class="form__input-error-message"></div>
+
+					<button class="form__button" type="button">
+						<a class="form__link form__text--color" href="#">Continue</a>
+					</button>
+					<button id="linkReturn" class="form__button" type="button">
+						<a href="/login" class="form__link form__text--color">Return</a>
+					</button>
+				</form>
+			</div>
+		</div>
+
+		<script src="/index.js"></script>
+
+	</body>
+</html>

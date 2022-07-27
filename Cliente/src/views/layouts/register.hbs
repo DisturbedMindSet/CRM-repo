@@ -1,0 +1,107 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		{{! external css }}
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+		/>
+		{{! internal css }}
+		<link rel="stylesheet" href="/css/register.css" />
+
+		<title>Register Form</title>
+	</head>
+
+	<body>
+		<div class="container">
+
+			<div class="wrapper">
+
+				<form action="/register" method="post" class="form" id="createAccount">
+
+					<h2 class="form__title">Create Account</h2>
+					<div class="form__message form__message--error"></div>
+					<div class="form__input-group">
+						<label for="username">Username</label>
+						<input
+							type="text"
+							name="username"
+							id="signupUsername"
+							class="form__input"
+							autofocus
+							placeholder="Username"
+						/>
+						<div class="form__input-error-message">
+
+						</div>
+					</div>
+					<div class="form__input-group">
+						<label for="email">Email</label>
+						<input
+							type="email"
+							id="checkEmail"
+							name="email"
+							class="form__input"
+							autofocus
+							placeholder="Email Address"
+						/>
+						<div class="form__input-error-message">
+
+						</div>
+					</div>
+
+					<div class="form__input-group">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							id="inputPass"
+							name="password"
+							class="form__input"
+							required
+							autofocus
+							placeholder="Password"
+						/>
+						<div class="form__input-error-message">
+
+						</div>
+					</div>
+					<div class="form__input-group">
+						<label for="password">Confirm Password</label>
+						<input
+							type="password"
+							name="passwordConfirm"
+							id="checkPass"
+							class="form__input"
+							required
+							autofocus
+							placeholder="Confirm password"
+						/>
+						<div class="form__input-error-message"></div>
+						<div class="form__message">
+
+						</div>
+					</div>
+					<button class="form__button" id="btn-registerSubmit" type="submit">Register</button>
+					<div class="form__message">
+						{{#if message}}
+							<h4 class="alert" style="background: rgb(238, 81, 81);">{{message}}</h4>
+						{{/if}}
+					</div>
+
+					<form action="/login" method="get">
+						<div class="form__text">
+							Already have an account!
+							<a href="/login" class="form__link" id="linkLogin">Sign In</a>
+						</div>
+					</form>
+				</form>
+
+			</div>
+		</div>
+
+		<script type="text/javascript" src="/index.js"></script>
+
+	</body>
+</html>
