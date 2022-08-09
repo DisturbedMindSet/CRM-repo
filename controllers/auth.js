@@ -9,7 +9,7 @@ const errorResponse = require("../utils/errorResponse");
 
 const register = async (req, res, next) => {
 	const { username, email, password } = req.body;
-
+	console.log("req.body: " + req.body.username);
 	try {
 		const user = await User.create({
 			username,
@@ -46,7 +46,7 @@ const login = async (req, res, next) => {
 		sendToken(user, 200, res);
 	} catch (error) {
 		res.status(500).json({
-			sucess: false,
+			success: false,
 			error: error.message,
 		});
 	}
