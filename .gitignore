@@ -3,7 +3,6 @@ node_modules
 README.md
 .env
 .vscode
-app.js
 logs
 user.json
 testDB.js
