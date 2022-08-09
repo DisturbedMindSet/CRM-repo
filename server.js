@@ -70,22 +70,22 @@ app.use(errorHandler);
 //
 // Server Files via hbs
 //
-app.set("view engine", "hbs");
-app.set("views", path.join(__dirname + "/../public/views/layouts"));
+// app.set("view engine", "hbs");
+// app.set("views", path.join(__dirname + "/../public/views/layouts"));
 
-const publicDirectory = path.join(__dirname + "/../public");
-console.log("publicDirectory-Path: " + publicDirectory);
-app.use(express.static(publicDirectory));
+// const publicDirectory = path.join(__dirname + "/../public");
+// console.log("publicDirectory-Path: " + publicDirectory);
+// app.use(express.static(publicDirectory));
 
-app.engine(
-	"hbs",
-	hbs.engine({
-		extname: "hbs",
-		defaultLayout: "",
-		layoutsDir: publicDirectory + "../views/layouts)",
-		partialsDir: publicDirectory + "./../views/partials",
-	}),
-);
+// app.engine(
+// 	"hbs",
+// 	hbs.engine({
+// 		extname: "hbs",
+// 		defaultLayout: "",
+// 		layoutsDir: publicDirectory + "../views/layouts)",
+// 		partialsDir: publicDirectory + "./../views/partials",
+// 	}),
+// );
 //
 //
 // Routes
