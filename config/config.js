@@ -14,7 +14,7 @@ const Email = {
 	EmailFrom: process.env.EmailFrom || "kl4usmik4elsonn@gmail.com",
 };
 
-const whiteList = ["https://www.yoursite.com", "http://localhost:4000", "https://www.google.pt/"];
+const whiteList = ["https://www.yoursite.com", "http://localhost:4000", "http://localhost:3000"];
 const corsOptions = {
 	origin: (origin, callback) => {
 		if (whiteList.indexOf(origin) !== -1 || !origin) {
