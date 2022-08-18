@@ -1,14 +1,13 @@
 import { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { navigate, uselocation } from "react-router-dom";
 import axios from "../../api/axios";
 
 const PrivateScreen = () => {
 	const [error, setError] = useState("");
 	const [privateData, setPrivateData] = useState("");
 
-	const navigate = useNavigate();
 	useEffect(() => {
-		if (!localStorage.getItem("authToken")) {
+		if (!localStorage.getItem("token")) {
 			navigate("/login");
 		}
 
@@ -16,7 +15,7 @@ const PrivateScreen = () => {
 			const config = {
 				header: {
 					"content-type": "application/json",
-					Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+					Authorization: `Bearer ${localStorage.getItem("token")}`,
 				},
 			};
 
@@ -24,7 +23,7 @@ const PrivateScreen = () => {
 				const { data } = await axios.get("api/private", config);
 				setPrivateData(data.data);
 			} catch (error) {
-				localStorage.removeItem("authToken");
+				localStorage.removeItem("token");
 				setError("You are not authorized, please login ");
 				//
 				//* redirect to login page
@@ -35,19 +34,13 @@ const PrivateScreen = () => {
 		};
 
 		fetchPrivateData();
-	}, [navigate]);
-
-	const logoutHandler = () => {
-		localStorage.removeItem("authToken");
-		navigate("/login");
-	};
+	}, []);
 
 	return error ? (
 		<span className="error">{error}</span>
 	) : (
 		<>
 			<div>{privateData}</div>
-			<button onClick={logoutHandler}>Logout</button>
 		</>
 	);
 };
