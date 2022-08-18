@@ -1,29 +1,56 @@
-const usersDB = require("../Model/testDB");
+const User = require("../Models/User");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config.js");
 
-const refreshToken = (req, res, next) => {
+const refreshToken = async (req, res, next) => {
 	const cookies = req.cookies;
-	if (!cookies?.jwt) return res.status(401);
-	console.log(cookies.jwt);
+	if (!cookies?.refreshToken) return res.status(401);
+	console.log(cookies.refreshToken);
 
-	const refreshToken = cookies.jwt;
+	const refreshToken = cookies.refreshToken;
 
-	const foundUser = usersDB.users.find(person => (person.refreshToken = refreshToken));
+	const foundUser = await User.findOne({ refreshToken });
+
+	console.log("foundUser: " + foundUser);
 
 	if (!foundUser) return res.status(403); //Forbidden
 
-	jwt.verify(refreshToken, config.config.server.Token.refresh_Token, (err, decoded) => {
-		if (err || foundUser.email !== decoded.email) {
-			return res.sendStatus(403); //Forbidden
-		}
-		const accessToken = jwt.sign(
-			{ username: decoded.username },
-			config.config.server.Token.access_Token,
-			{ expiresIn: "300s" },
-		);
-		res.json({ accessToken });
+	const isValid = verifyRefreshToken(foundUser.email, refreshToken);
+
+	if (!isValid) {
+		return res.status(401).json({
+			success: false,
+			error: "invalid token",
+		});
+	}
+
+	const accessToken = foundUser.getSignedToken();
+
+	res.status(201).json({
+		success: true,
+		accessToken,
 	});
+};
+
+const verifyRefreshToken = (email, refreshToken) => {
+	try {
+		const decoded = jwt.verify(
+			refreshToken,
+			config.CONFIG.server.Token.refresh_Token,
+			(err, decoded) => {
+				if (err) {
+					return res.status(403).json({
+						success: false,
+						error: "Invalid token,try login again",
+					});
+				}
+
+				return decoded.email === email;
+			},
+		);
+	} catch (error) {
+		return false;
+	}
 };
 
 module.exports = { refreshToken };
