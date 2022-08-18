@@ -90,19 +90,13 @@ app.use(errorHandler);
 //
 // Routes
 
+//* routes
 app.use("/api/auth", authRoute);
 app.use("/api/private", privateRoute);
+app.use("/refresh", require("./routes/refresh"));
+
 //
 //
-// Error Handling ?
-
-// app.use((req, res, next) => {
-// 	const error = new Error("not found");
-
-// 	return res.status(404).json({
-// 		message: error.message,
-// 	});
-// });
 
 //
 // doesn't find page - error 404
