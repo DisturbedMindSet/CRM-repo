@@ -15,9 +15,7 @@ const protect = async (req, res, next) => {
 	}
 
 	try {
-		console.log("ERRRRRRRRROOOOOOOOO");
 		const decoded = jwt.verify(token, CONFIG.server.Token.access_Token);
-		console.log("decoded: " + decoded);
 
 		const pessoa = await User.findById(decoded.id);
 
