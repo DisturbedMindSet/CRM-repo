@@ -6,16 +6,23 @@ const crypto = require("crypto");
 const { CONFIG } = require("../config/config");
 const sendEmail = require("../utils/sendEmail");
 const errorResponse = require("../utils/errorResponse");
+const roles = require("../config/roles_list");
+const { set } = require("date-fns");
 
 const register = async (req, res, next) => {
 	const { username, email, password } = req.body;
-	console.log("req.body: " + req.body.username);
+
 	try {
 		const user = await User.create({
 			username,
 			email,
 			password,
+			roles: roles.User,
+			signedToken: "",
+			refreshToken: "",
 		});
+
+		console.log(user);
 
 		sendToken(user, 201, res);
 	} catch (error) {
@@ -137,12 +144,22 @@ const resetPassword = async (req, res, next) => {
 };
 
 //** functions */
-const sendToken = (user, statusCode, res) => {
+const sendToken = async (user, statusCode, res) => {
 	const token = user.getSignedToken();
-	res.status(statusCode).json({
-		sucess: true,
-		token,
-	});
+	const refreshToken = user.getSignedRefreshToken();
+	console.log("userEmail: " + user.email);
+	await User.updateOne(
+		{ email: user.email },
+		{ $set: { signedToken: token, signedRefreshToken: refreshToken } },
+	);
+	
+	res
+		.status(statusCode)
+		.cookie("refreshToken", refreshToken, { httpOnly: true, secure: true })
+		.json({
+			success: true,
+			token,
+		});
 };
 
 module.exports = { register, login, forgotPassword, resetPassword };
