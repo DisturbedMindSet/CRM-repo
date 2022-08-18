@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { CONFIG } = require("../config/config");
+const roles = require("../config/roles_list");
 
 const UserSchema = new mongoose.Schema({
 	username: {
@@ -24,6 +25,11 @@ const UserSchema = new mongoose.Schema({
 		minlength: 6,
 		select: false,
 	},
+	roles: { type: String },
+	signedToken: { type: String },
+	signedTokenExpired: { type: Date },
+	signedRefreshToken: { type: String },
+	signedRefreshTokenExpired: { type: Date },
 	resetPasswordToken: { type: String },
 	resetPasswordExpired: { type: Date },
 });
@@ -44,7 +50,13 @@ UserSchema.methods.matchPasswords = async function (password) {
 
 UserSchema.methods.getSignedToken = function () {
 	return jwt.sign({ id: this._id }, CONFIG.server.Token.access_Token, {
-		expiresIn: CONFIG.server.Token.expireDate,
+		expiresIn: CONFIG.server.Token.access_Token_ExpireDate,
+	});
+};
+
+UserSchema.methods.getSignedRefreshToken = function () {
+	return jwt.sign({ id: this._id }, CONFIG.server.Token.refresh_Token, {
+		expiresIn: CONFIG.server.Token.refresh_Token_ExpireDate,
 	});
 };
 
