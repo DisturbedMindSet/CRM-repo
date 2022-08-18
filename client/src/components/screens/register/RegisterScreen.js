@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import axios from "../../api/axios";
-
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import axios from "../../../api/axios";
 
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,14 +41,15 @@ const RegisterScreen = () => {
 	//
 	const [errMessage, setErrMessage] = useState("");
 
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from || "/home";
 	// ! verificar
-	// const { navigate } = useNavigate();
 	// useEffect(() => {
-	// 	if (localStorage.getItem("authToken")) {
-	// 		//
-	// 		navigate("/");
+	// 	if (localStorage.getItem("token")) {
+	// 		navigate(from, { replace: true });
 	// 	}
-	// }, [navigate]);
+	// }, [from, navigate]);
 
 	// ! //////////////
 
@@ -59,21 +59,20 @@ const RegisterScreen = () => {
 
 	useEffect(() => {
 		const result = USER_REGEX.test(username);
-		console.log(result);
-		console.log(username);
+
 		setValidUsername(result);
 	}, [username]);
 
 	useEffect(() => {
 		const result = EMAIL_REGEX.test(email);
-		console.log(result);
-		console.log("email: " + email);
+
 		setValidEmail(result);
 	}, [email]);
 
 	useEffect(() => {
 		const result = PASSWORD_REGEX.test(password);
 		setValidPassword(result);
+
 		setValidConfirmPassword(password === confirmPassword);
 	}, [password, confirmPassword]);
 
@@ -123,10 +122,12 @@ const RegisterScreen = () => {
 
 			console.log(data);
 
-			localStorage.setItem("authToken", data.token);
+			localStorage.setItem("token", data.token);
 
 			// ! verificar
-			// navigate("/")
+			console.log("from : " + from);
+
+			navigate(from, { replace: true });
 			// ! /////////////////
 		} catch (error) {
 			if (!error?.response) {

@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
-import axios from "../../api/axios";
-import { Link, useNavigate } from "react-router-dom";
+import axios from "../../../api/axios";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 //custom css
 import "./LoginScreen.css";
@@ -14,7 +15,17 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 const EMAIL_REGEX = /[a-z0-9]+@[a-z]+.[a-z]{2,3}/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
-const LoginScreen = ({ history }) => {
+const LoginScreen = () => {
+	const { setAuth } = useAuth();
+	// const [token, setToken] = useState(null);
+
+	// localStorage.getItem("token") || false);
+
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from || "/home";
+	// const from = location.state?.from?.pathname || "/";
+
 	const userRef = useRef();
 	const errRef = useRef();
 	//
@@ -35,23 +46,25 @@ const LoginScreen = ({ history }) => {
 	}, []);
 
 	// ! verificar
-	const navigate = useRef(useNavigate());
-	useEffect(() => {
-		if (localStorage.getItem("authToken")) {
-			navigate.current.navigate("/");
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (localStorage.getItem("token")) {
+	// 		navigate(from, { replace: true });
+	// 	}
+	// }, [from, navigate]);
+
 	// ! ////////////
 
 	useEffect(() => {
 		const result = EMAIL_REGEX.test(email);
 
 		setValidEmail(result);
+		console.log("email: " + result);
 	}, [email]);
 
 	useEffect(() => {
 		const result = PASSWORD_REGEX.test(password);
 		setValidPassword(result);
+		console.log("pass: " + result);
 	}, [password]);
 
 	const loginHandler = async (e) => {
@@ -65,21 +78,31 @@ const LoginScreen = ({ history }) => {
 		};
 
 		try {
-			const { data } = await axios.post("/api/auth/login", { email, password }, config);
+			const response = await axios.post("/api/auth/login", { email, password }, config);
 
 			// clear state and controlled inputs
+
+			const accessToken = response?.data?.token;
+			const roles = response?.data?.roles;
+			console.log(response.data);
+			console.log(roles);
 
 			setEmail("");
 			setPassword("");
 
-			localStorage.setItem("authToken", data.token);
-
+			localStorage.setItem("token", response.data.token);
+			setAuth({ email, password, roles, accessToken });
+			console.log("from : " + from);
 			// ! verificar
-			navigate("/register");
+			// console.log("setAuth " + setAuth({ email }));
+
+			navigate(from, { replace: true });
+
 			// ! /////
 		} catch (error) {
 			if (!error?.response) {
 				setErrMessage("No Server Response");
+				console.log(!error?.response);
 				setTimeout(() => {
 					setErrMessage("");
 				}, 5000);
@@ -147,15 +170,15 @@ const LoginScreen = ({ history }) => {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
-
+					{/* disabled={!validEmail || !validPassword ? true : false} */}
 					<button
 						disabled={!validEmail || !validPassword ? true : false}
-						className="form__button "
+						className="form__button"
 						id="btn-loginSubmit">
 						Login
 					</button>
 
-					<div class="form__text">
+					<div className="form__text">
 						<p>
 							<Link className="form__link " to="/forgotpassword">
 								Forgot Password?
