@@ -1,28 +1,44 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { Routes, Route } from "react-router-dom";
 
 // * Routing;
 // import PrivateRoute from "./components/routing/PrivateRoute";
 
 // * Screens;
 // import PrivateScreen from "./components/screens/PrivateScreen";
-import LoginScreen from "./components/screens/LoginScreen";
-import RegisterScreen from "./components/screens/RegisterScreen";
-import ForgotPasswordScreen from "./components/screens/ForgotPasswordScreen";
+import LoginScreen from "./components/screens/login/LoginScreen";
+import RegisterScreen from "./components/screens/register/RegisterScreen";
+import ForgotPasswordScreen from "./components/screens/forgotpassword/ForgotPasswordScreen";
 // import ResetPasswordScreen from "./components/screens/ResetPasswordScreen";
+import HomeScreen from "./components/screens/dashboard/HomeScreen";
+
+import Layout from "./components/layout/layout";
+import RequireAuth from "./components/routing/requireAuth";
 
 const App = () => {
 	return (
-		<Router>
-			<Routes>
+		<Routes>
+			<Route path="/" element={<Layout />}>
 				{/* <PrivateRoute exact path="/" component={PrivateScreen} /> */}
-				<Route exact path="/login" element={<LoginScreen />} />
-				<Route exact path="/register" element={<RegisterScreen />} />
+				{/* Public ROutes */}
 
-				<Route exact path="/forgotpassword" component={ForgotPasswordScreen} />
+				<Route path="/login" element={<LoginScreen />} />
+				<Route path="/register" element={<RegisterScreen />} />
+
+				<Route path="/forgotpassword" element={<ForgotPasswordScreen />} />
+
 				{/* <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen} /> */}
-			</Routes>
-		</Router>
+
+				{/*  route dashboard */}
+
+				<Route element={<RequireAuth />}>
+					<Route path="/home" element={<HomeScreen />} />
+				</Route>
+				{/* unauthorized user */}
+				{/* <Route  path="/unauthorized" element={<Unauthorized />} /> */}
+				{/* not found page 404 Page */}
+				{/* <Route  path="*" element={<Missing />} /> */}
+			</Route>
+		</Routes>
 	);
 };
 
