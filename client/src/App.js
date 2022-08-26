@@ -1,18 +1,21 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
 
 // * Routing;
 // import PrivateRoute from "./components/routing/PrivateRoute";
 
 // * Screens;
 // import PrivateScreen from "./components/screens/PrivateScreen";
-import LoginScreen from "./components/screens/login/LoginScreen";
-import RegisterScreen from "./components/screens/register/RegisterScreen";
-import ForgotPasswordScreen from "./components/screens/forgotpassword/ForgotPasswordScreen";
+import LoginScreen from "./Pages/login/LoginScreen";
+import RegisterScreen from "./Pages/register/RegisterScreen";
+import ForgotPasswordScreen from "./Pages/forgotpassword/ForgotPasswordScreen";
 // import ResetPasswordScreen from "./components/screens/ResetPasswordScreen";
-import HomeScreen from "./components/screens/dashboard/HomeScreen";
+import HomeScreen from "./Pages/dashboard/HomeScreen";
 
 import Layout from "./components/layout/layout";
-import RequireAuth from "./components/routing/requireAuth";
+import RequireAuth from "./routing/requireAuth";
+import TestScreen from "./Pages/TestScreen";
+
 
 const App = () => {
 	return (
@@ -20,7 +23,7 @@ const App = () => {
 			<Route path="/" element={<Layout />}>
 				{/* <PrivateRoute exact path="/" component={PrivateScreen} /> */}
 				{/* Public ROutes */}
-
+				<Route path="/" navigate element={<Navigate to="/login" replace />} />
 				<Route path="/login" element={<LoginScreen />} />
 				<Route path="/register" element={<RegisterScreen />} />
 
@@ -28,6 +31,8 @@ const App = () => {
 
 				{/* <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen} /> */}
 
+				{/* TestScreen */}
+				<Route path="/test/*" element={<TestScreen />} />
 				{/*  route dashboard */}
 
 				<Route element={<RequireAuth />}>
