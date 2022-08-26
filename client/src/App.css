@@ -1,0 +1,10 @@
+.App {
+	/* background-image: url(./utils/img/blue.jpg); */
+	background-color: red;
+	background-repeat: no-repeat;
+	background-size: cover;
+	object-fit: cover;
+}
+main.App.Layout {
+	width: 100%;
+}
