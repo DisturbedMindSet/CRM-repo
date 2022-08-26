@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+/* IDEAS */
+/* fetch images from one website(background img) */
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+/*  For Inspect  */
+
+/* / * * {
+	outline: 1px solid #f00 !important;
+} */
+
+/* a {
+    text-decoration: none;
+} */
+
+::-moz-selection {
+	color: #fff;
+	background: rgb(56, 83, 191);
+}
+
+::selection {
+	color: #fff;
+	background: rgb(56, 83, 191);
+}
+
+.body {
+	--color-primary: rgb(0, 149, 121);
+	--color-primary-dark: rgb(0, 127, 103);
+	--color-secondary: #252c6a;
+	--color-error: #cc3333;
+	--color-success: #4bb544;
+	--border-radius: 4px;
+
+	min-height: 100vh;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/* background-image: url(../../utils/img/login-register-Background.jpg); */
+	background-repeat: no-repeat;
+	background-size: cover;
+	object-fit: cover;
+}
+
+.register__container {
+	width: 600px;
+	max-width: calc(100% - 160px);
+	margin: 1rem;
+	padding: 4rem;
+	margin: 0 auto;
+
+	box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+	background-image: url(../../utils/img/login-register-Background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	object-fit: cover;
+}
+
+.title__color {
+	color: rgb(255, 255, 255);
+}
+.form {
+	background-color: rgb(255, 255, 255);
+}
+
+.hide {
+	display: none;
+	text-align: center;
+	margin-bottom: 1rem;
+}
+.offscreen {
+	display: none;
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.valid {
+	display: inline;
+	text-align: center;
+	color: #4bb544;
+}
+.instructions {
+	display: inline;
+	text-align: center;
+	margin-bottom: 1rem;
+	padding-left: (spacer * 0.5);
+	padding-right: (spacer * 0.5);
+}
+.invalid {
+	color: Red;
+}
+
+.register__form__title {
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.register__form__message {
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.register__form__message--success {
+	color: var(--color-success);
+}
+
+.register__form__message--error {
+	color: var(--color-error);
+}
+
+.register__wrapper {
+	width: 100%;
+	padding: 2rem;
+	background: rgb(255, 255, 255);
+	border-radius: 2%;
+	-webkit-border-radius: 2%;
+	-moz-border-radius: 2%;
+	-ms-border-radius: 2%;
+	-o-border-radius: 2%;
+}
+
+.register__form__input-group {
+	margin-bottom: 1rem;
+}
+
+.form__input {
+	display: block;
+	width: 100%;
+	padding: 0.75rem;
+	border: 1px solid #ddd;
+	outline: none;
+	background: #eee;
+	transition: background 0.2s, border-color 0.2s;
+	border-radius: var(--border-radius);
+	-webkit-border-radius: var(--border-radius);
+	-moz-border-radius: var(--border-radius);
+	-ms-border-radius: var(--border-radius);
+	-o-border-radius: var(--border-radius);
+	-webkit-transition: background 0.2s, border-color 0.2s;
+	-moz-transition: background 0.2s, border-color 0.2s;
+	-ms-transition: background 0.2s, border-color 0.2s;
+	-o-transition: background 0.2s, border-color 0.2s;
+}
+
+.form__input:focus {
+	border-color: var(--color-primary);
+	background: #fff;
+}
+
+.form__input--error {
+	color: var(--color-error);
+	border-color: var(--color-error);
+}
+
+.form__input--success {
+	color: var(--color-success);
+	border: var(--color-success);
+}
+
+.form__input-error-message {
+	margin-top: 0.5rem;
+	font-size: 0.85rem;
+	color: var(--color-error);
+}
+
+.register__form__button {
+	width: 100%;
+	padding: 1rem 2rem;
+	margin-bottom: 1rem;
+	font-weight: bold;
+	font-size: 1.1rem;
+	color: #fff;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background: var(--color-primary);
+	border-radius: var(--border-radius);
+	-webkit-border-radius: var(--border-radius);
+	-moz-border-radius: var(--border-radius);
+	-ms-border-radius: var(--border-radius);
+	-o-border-radius: var(--border-radius);
+}
+
+.register__form__button:disabled {
+	background-color: #808080;
+}
+
+.register__form__button:hover {
+	background: rgb(112, 112, 112);
+}
+
+.register__form__button:active {
+	transform: scale(0.98);
+	-webkit-transform: scale(0.98);
+	-moz-transform: scale(0.98);
+	-ms-transform: scale(0.98);
+	-o-transform: scale(0.98);
+}
+
+.form__text {
+	text-align: center;
+	align-items: center;
+	margin: 0.5rem;
+	font-size: 16px;
+}
+
+.form__link {
+	color: var(--color-secondary);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.form__link:hover {
+	text-decoration: underline;
+}
+
+.form__text--color {
+	color: #fff;
+}
+
+/* Reuse class - Utility */
+
+.text-center {
+	text-align: center;
+}
+
+.alert {
+	text-align: center;
+}
