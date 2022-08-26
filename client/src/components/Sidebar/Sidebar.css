@@ -1,0 +1,15 @@
+* {
+	outline: green !important;
+}
+
+/* s */
+.active {
+	background: lightskyblue;
+	color: #000;
+}
+.deco {
+	text-decoration: none !important;
+}
+span .deco {
+	text-decoration: none;
+}
