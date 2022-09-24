@@ -1,0 +1,58 @@
+#widget {
+	// display: grid;
+	// grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+	// grid-auto-rows: 94px;
+
+	// box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+	// -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+
+	///
+	display: flex;
+	flex: 1;
+	padding: 20px;
+	flex-wrap: wrap;
+
+	.card {
+		display: flex;
+		flex: 1;
+		justify-content: space-between;
+		padding: 10px;
+		background-color: #d3d3;
+	}
+	#left,
+	#right {
+	}
+
+	.tittle {
+		color: #a0a0a0;
+	}
+
+	.counter {
+		font-size: 28px;
+		font-weight: 300;
+	}
+
+	.link {
+		font-size: 0.75rem;
+		border-bottom: 1px solid gray;
+		color: #a0a0a0;
+	}
+
+	.percentage {
+		font-size: 0.875rem;
+
+		&.positive {
+			color: green;
+		}
+		&.negative {
+			color: red;
+		}
+	}
+
+	.icon {
+		font-size: 18px;
+		padding: 5px;
+		border-radius: 5px;
+		align-self: flex-end;
+	}
+}
