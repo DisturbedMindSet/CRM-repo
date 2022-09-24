@@ -5,12 +5,7 @@ import axios from "../../api/axios";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-
-// Bootstrap Bundle JS
-import "bootstrap/dist/js/bootstrap.bundle.min";
-
+// custom CSS
 import "./RegisterScreen.css";
 
 // *talvez importar regex de config file
@@ -151,7 +146,7 @@ const RegisterScreen = () => {
 	};
 
 	return (
-		<body className="body">
+		<div className="body">
 			<div className="register__container	">
 				<div className="register__wrapper">
 					<p ref={errRef} className={errMessage ? "errmessage" : "offscreen"} aria-live="assertive">
@@ -340,7 +335,7 @@ const RegisterScreen = () => {
 					</form>
 				</div>
 			</div>
-		</body>
+		</div>
 	);
 };
 
