@@ -6,12 +6,6 @@ import useAuth from "../../hooks/useAuth";
 //custom css
 import "./LoginScreen.css";
 
-// bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-
-// Bootstrap Bundle JS
-import "bootstrap/dist/js/bootstrap.bundle.min";
-
 const EMAIL_REGEX = /[a-z0-9]+@[a-z]+.[a-z]{2,3}/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
@@ -122,7 +116,7 @@ const LoginScreen = () => {
 	};
 
 	return (
-		<body className="body">
+		<div className="body">
 			<div className="login__container">
 				<div className="wrapper">
 					<p ref={errRef} className={errMessage ? "errmessage" : "offscreen"} aria-live="assertive">
@@ -197,7 +191,7 @@ const LoginScreen = () => {
 					</form>
 				</div>
 			</div>
-		</body>
+		</div>
 	);
 };
 
