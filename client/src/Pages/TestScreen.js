@@ -1,12 +1,12 @@
 import React from "react";
-import Main from "../components/Main";
+import MainHome from "../components/Main";
 
 import "./TestScreen.css";
 
 const TestScreen = () => {
 	return (
 		<React.Fragment>
-			<Main />
+			<MainHome />
 		</React.Fragment>
 	);
 };
