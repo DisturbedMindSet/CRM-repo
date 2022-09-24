@@ -15,7 +15,7 @@ import HomeScreen from "./Pages/dashboard/HomeScreen";
 import Layout from "./components/layout/layout";
 import RequireAuth from "./routing/requireAuth";
 import TestScreen from "./Pages/TestScreen";
-
+import Customer from "./Pages/customer/Customer";
 
 const App = () => {
 	return (
@@ -32,11 +32,12 @@ const App = () => {
 				{/* <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen} /> */}
 
 				{/* TestScreen */}
-				<Route path="/test/*" element={<TestScreen />} />
+				<Route path="/test/*" element={<HomeScreen />} />
+				<Route path="/test/costumer" element={<Customer />} />
 				{/*  route dashboard */}
 
 				<Route element={<RequireAuth />}>
-					<Route path="/home" element={<HomeScreen />} />
+					<Route path="/home" element={<TestScreen />} />
 				</Route>
 				{/* unauthorized user */}
 				{/* <Route  path="/unauthorized" element={<Unauthorized />} /> */}
