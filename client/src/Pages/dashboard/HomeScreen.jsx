@@ -6,45 +6,54 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Widget from "../../components/Widget/Widget";
 import Feature from "../../components/Feature/Feature";
-import Chart from "../../components/Chart/Chart";
-import Footer from "../../components/Footer/Footer";
+import ListProduts from "../../components/ListProduts/ListProduts";
+import ListOrder from "../../components/ListOrders/ListOrder";
+import MiniCalendar from "../../components/MiniCalendar/MiniCalendar";
+import Categories from "../../components/Categories/Categories";
 
 const HomeScreen = () => {
 	return (
 		<React.Fragment>
-			<div id="Home" className="gridContainer">
-				<Sidebar className="aside" />
-				<Navbar className="header" />
-
-				<main className="mainContainer main">
-					<section className="widgets ">
+			<main className="col-12 w-100 flex-column bg">
+				<div className="row ">
+					<section className="col-8 widgets  row p-5">
+						<h1 className="navbar-brand fw-bold">Overview</h1>
 						<Widget type="profit" className="card" />
 						<Widget type="order" className="card" />
 						<Widget type="customer" className="card" />
 
-						{/* <p style={{ color: "red", background: "blue" }}>
-							<li>Top selling product</li>
-						</p> */}
-					</section>
-					<section className="charts bg-primary">
-						<Feature />
-						<p>sales report</p>
-
-						<Chart />
-					</section>
-					<section className="" style={{ background: "rgb(100,200,100)" }}>
-						<p>active users</p>
-						<p>upcoming events </p>
-						<p>popular categories</p>
-					</section>
-					<section style={{ background: "rgb(100,200,100)" }}>
-						<p>recent orders</p>
-						<p>city order statistics</p>
+						<div className="h-auto">
+							<Feature />
+						</div>
 					</section>
 
-					{/* create to TOP button */}
-				</main>
-			</div>
+					<section className="col-4 charts d-inline-block">
+						<ListProduts />
+					</section>
+				</div>
+				<div className="col-12 w-100 flex-column">
+					<div className="row ">
+						<section className="col-12 widgets  row p-5">
+							<ListOrder />
+						</section>
+					</div>
+				</div>
+				<div className="col-12 w-100 flex-column pb-5">
+					<div className="row ">
+						<section className="col-4 flex-column d-flex">
+							<p>active users</p>
+						</section>
+
+						<section className="col-4 flex-column d-flex">
+							<MiniCalendar />
+						</section>
+						<section className="col-4 flex-column d-flex">
+							<Categories />
+						</section>
+					</div>
+				</div>
+				{/* create to TOP button */}
+			</main>
 		</React.Fragment>
 	);
 };

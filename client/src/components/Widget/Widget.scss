@@ -1,58 +1,34 @@
-#widget {
-	// display: grid;
-	// grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-	// grid-auto-rows: 94px;
+.widget {
+	box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+	-webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+	padding: 10px;
 
-	// box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-	// -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+	align-items: center;
+	height: 100px;
+	width: max-content;
+}
 
-	///
-	display: flex;
-	flex: 1;
-	padding: 20px;
-	flex-wrap: wrap;
+.widgetIcon {
+	font-size: 18px;
+	padding: 5px;
+	border-radius: 5px;
+	align-self: flex-end;
 
-	.card {
-		display: flex;
-		flex: 1;
-		justify-content: space-between;
-		padding: 10px;
-		background-color: #d3d3;
+	&.positive {
+		color: green;
 	}
-	#left,
-	#right {
+	&.negative {
+		color: red;
 	}
+}
 
-	.tittle {
-		color: #a0a0a0;
-	}
-
-	.counter {
-		font-size: 28px;
-		font-weight: 300;
-	}
-
-	.link {
-		font-size: 0.75rem;
-		border-bottom: 1px solid gray;
-		color: #a0a0a0;
-	}
-
-	.percentage {
-		font-size: 0.875rem;
-
-		&.positive {
-			color: green;
-		}
-		&.negative {
-			color: red;
-		}
-	}
-
-	.icon {
-		font-size: 18px;
-		padding: 5px;
-		border-radius: 5px;
-		align-self: flex-end;
-	}
+.link {
+	font-size: 12px;
+	border-bottom: 1px solid gray;
+	width: 100px;
 }

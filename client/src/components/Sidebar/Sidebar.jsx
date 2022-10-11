@@ -23,70 +23,100 @@ const Sidebar = () => {
 	//
 	//
 	return (
-		<aside id="Sidebar" className="sidebar ">
-			<section id="TopSectionSidebar" className=" d-flex align-items-center justify-content-center">
-				<span id="Logo" className="fs-3 fw-bold  ">
-					<NavLink to={window.location.pathname + "/dashboard"}>Logo</NavLink>
+		<aside id="Sidebar" className="vh-100 sidebar sticky-top  ">
+			<section id="TopSectionSidebar" className="position-sticky pt-3 pb-3 sidebar-sticky">
+				<span
+					id="Logo"
+					className="d-flex justify-content-center align-items-center fs-3 fw-bold text-decoration-none 
+">
+					<NavLink
+						className="text-decoration-none navbar-brand ps-1"
+						to={window.location.pathname + "/dashboard"}>
+						Logo
+					</NavLink>
 				</span>
 			</section>
 			<hr id="hr" className="hr mt-1" />
-			<section id="CenterSectionSidebar" className="ps-3 d-flex">
-				<ul id="MenuList" className="text-decoration-none m-0 p-0 ">
-					<p id="titleMain" className="fw-bold mt-1 mb-1">
+			<section
+				id="CenterSectionSidebar"
+				className="ps-xl-3 ps-lg-2 ps-md-2 ps-sm-1 pe-xl-0 pe-lg-0 pe-md-0 d-flex">
+				<div id="MenuList" className=" align-items-center  m-0 pt-2 pb-3">
+					<p id="titleSidebar" className="fw-bold mt-2 mb-1">
 						Main
 					</p>
-
-					<li className="">
-						<NavLink to={window.location.pathname + "/dashboard"} className="">
-							<FontAwesomeIcon icon={faGripHorizontal} className="icon" />
-							<span name="dashboard" className="">
-								Dashboard
-							</span>
-						</NavLink>
-					</li>
-
-					<p id="titleGeneral" className="fw-bold mt-1 mb-1 mt-2">
+					<ul className="nav flex-column m-0 p-0 ">
+						<li className="nav-item  d-flex align-items-center">
+							<NavLink
+								to={window.location.pathname + "/dashboard"}
+								replace={true}
+								className="nav-link ps-1">
+								<FontAwesomeIcon icon={faGripHorizontal} className="icon" />
+								<span name="dashboard" className="ms-2">
+									Dashboard
+								</span>
+							</NavLink>
+						</li>
+					</ul>
+					<p id="titleSidebar" className="fw-bold mt-2 mb-1">
 						General
 					</p>
+					<ul className="nav flex-column">
+						<li className="nav-item">
+							<NavLink
+								to={window.location.pathname + "/Products"}
+								replace={true}
+								className="nav-link ps-1">
+								<FontAwesomeIcon icon={faShop} className="icon" />
+								<span name="products" className="ms-2">
+									Products
+								</span>
+							</NavLink>
+						</li>
 
-					<li>
-						<NavLink to="" className="">
-							<FontAwesomeIcon icon={faShop} className="icon" />
-							<span name="products">Products</span>
-						</NavLink>
-					</li>
+						<li className="nav-item">
+							<NavLink
+								to={window.location.pathname + "/Orders"}
+								replace={true}
+								className="nav-link ps-1">
+								<FontAwesomeIcon icon={faCreditCard} className="icon" />
+								<span name="orders" className="ms-2">
+									Orders
+								</span>
+							</NavLink>
+						</li>
 
-					<li>
-						<NavLink to="" className="">
-							<FontAwesomeIcon icon={faCreditCard} className="icon" />
-							<span name="orders">Orders</span>
-						</NavLink>
-					</li>
-
-					<li>
-						<NavLink to="/cus" className="">
-							<FontAwesomeIcon icon={faUser} className="icon" />
-							<span name="customers">Customers</span>
-						</NavLink>
-					</li>
-
-					<p id="titleGeneral" className="fw-bold mt-1 mb-1 mt-3">
+						<li className="nav-item">
+							<NavLink
+								to={window.location.pathname + "/customers"}
+								replace={true}
+								className="nav-link ps-1">
+								<FontAwesomeIcon icon={faUser} className="icon" />
+								<span name="customers" className="ms-2">
+									Customers
+								</span>
+							</NavLink>
+						</li>
+					</ul>
+					<p id="titleSidebar" className="fw-bold mt-1 mb-1 mt-3">
 						Management
 					</p>
+					<ul className="nav flex-column ">
+						<li className="nav-item d-flex ">
+							<NavLink
+								to={window.location.pathname + "/Analytics"}
+								replace
+								className="nav-link ps-1">
+								<FontAwesomeIcon icon={faChartSimple} className="icon " />
+								<span className="ms-2">Analytics</span>
+							</NavLink>
 
-					<li>
-						<NavLink to="" className="">
-							<FontAwesomeIcon icon={faChartSimple} className="icon" />
-							<span>Analytics</span>
-						</NavLink>
-
-						<FontAwesomeIcon
-							icon={open ? faChevronUp : faChevronDown}
-							className="icon fs-6 ps-2  "
-							onClick={() => setIsOpen(!open)}
-						/>
-					</li>
-
+							<FontAwesomeIcon
+								icon={open ? faChevronUp : faChevronDown}
+								className="cursor nav-link icon fs-6 align-self-center p-0"
+								onClick={() => setIsOpen(!open)}
+							/>
+						</li>
+					</ul>
 					<div className={open ? "d-flex flex-column" : "d-none"}>
 						<ul className="subMenuList">
 							<li>
@@ -104,39 +134,42 @@ const Sidebar = () => {
 						</ul>
 					</div>
 
-					<p id="titleGeneral" className="fw-bold mt-1 mb-1 mt-3">
+					<p id="titleSidebar" className="fw-bold mt-1 mb-1 mt-3 ">
 						extra
 					</p>
+					<ul className="nav flex-column">
+						<li className="nav-item">
+							<NavLink to="" className="nav-link ps-1">
+								<FontAwesomeIcon icon={faCalendarDays} className="icon" />
+								<span className="ms-2">Calendar</span>
+							</NavLink>
+						</li>
 
-					<li>
-						<NavLink to="" className="">
-							<FontAwesomeIcon icon={faCalendarDays} className="icon" />
-							<span>Calendar</span>
-						</NavLink>
-					</li>
+						<li className="nav-item">
+							<NavLink to="" className="nav-link ps-1">
+								<FontAwesomeIcon icon={faComment} className="icon" />
+								<span className="ms-2">community</span>
+							</NavLink>
+						</li>
 
-					<li>
-						<NavLink to="" className="">
-							<FontAwesomeIcon icon={faComment} className="icon" />
-							<span>community</span>
-						</NavLink>
-					</li>
-
-					<li>
-						<NavLink to="" className="text-decoration-none">
-							<FontAwesomeIcon icon={faHeadset} className="icon" />
-							<span className="">Support</span>
-						</NavLink>
-					</li>
-				</ul>
+						<li className="nav-item ">
+							<NavLink to="" className="nav-link ps-1 ">
+								<FontAwesomeIcon icon={faHeadset} className="icon" />
+								<span className="ms-2">Support</span>
+							</NavLink>
+						</li>
+					</ul>
+				</div>
 			</section>
-			<section id="BottomSectionSidebar" className="mt-3 position-fixed bottom-0 p-3">
-				<NavLink to="" className="d-flex align-items-center">
-					<li>
-						<FontAwesomeIcon icon={faGear} className="icon" />
-						<span className="">Settings</span>
-					</li>
-				</NavLink>
+			<section
+				id="BottomSectionSidebar"
+				className="ps-xl-3 ps-lg-2 ps-md-2 ps-sm-1 nav mt-3 position-fixed bottom-0 p-3">
+				<li className="nav-item">
+					<NavLink to="" className="nav-link ps-1">
+						<FontAwesomeIcon icon={faGear} className="icon " />
+						<span className=" ms-2">Settings</span>
+					</NavLink>
+				</li>
 			</section>
 		</aside>
 	);
