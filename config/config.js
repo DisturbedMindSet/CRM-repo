@@ -10,7 +10,7 @@ const Email = {
 	EmailUsername: process.env.EmailUsername || "apikey",
 	EmailPassword:
 		process.env.EmailPassword ||
-		"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",
+		"SG.uF9SGfzxSXOOZi0DqakJ-A.mQ7vBz_0tay7IYLWo13fikMSqQyb7ASroWKKy8Aa0NpQ",
 	EmailFrom: process.env.EmailFrom || "kl4usmik4elsonn@gmail.com",
 };
 
